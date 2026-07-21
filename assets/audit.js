@@ -6,6 +6,18 @@
 (function () {
   "use strict";
 
+
+  // ---- centralized audit counter (fire-and-forget) ----
+  var COUNTER_NS = "stayly-ai";
+  function trackAudit() {
+    try {
+      fetch("https://api.counterapi.dev/v1/" + COUNTER_NS + "/audit_completed/up", {
+        method: "GET",
+        mode: "cors",
+        cache: "no-store"
+      });
+    } catch (e) {}
+  }
   var form = document.getElementById("auditForm");
   var result = document.getElementById("auditResult");
   var titleEl = document.getElementById("fTitle");
@@ -208,6 +220,7 @@
       instant: instantEl.checked
     });
     render(res);
+    trackAudit();
   });
 
   // hero demo score (illustrative until user runs audit)
