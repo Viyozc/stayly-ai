@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://Viyozc.github.io/stayly-ai/sitemap.xml

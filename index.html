@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stayly — Free Airbnb Listing Audit (for hosts who want more bookings)</title>
+  <meta name="description" content="Stayly scores your Airbnb listing like the algorithm sees it — title, description, photos, amenities, pricing, trust — and gives you a 0–100 readiness score plus exactly what to fix to raise occupancy." />
+  <link rel="canonical" href="https://Viyozc.github.io/stayly-ai/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Stayly — Free Airbnb Listing Audit (for hosts who want more bookings)" />
+  <meta property="og:description" content="Stayly scores your Airbnb listing like the algorithm sees it and hands you a 0–100 readiness score plus exactly what to fix to raise occupancy." />
+  <meta property="og:url" content="https://Viyozc.github.io/stayly-ai/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Stayly — Free Airbnb Listing Audit" />
+  <meta name="twitter:description" content="Score your Airbnb listing 0–100 and learn what's costing you bookings." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="assets/style.css" />
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Stayly","url":"https://Viyozc.github.io/stayly-ai/","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+</head>
+<body>
+  <!-- ===== Nav ===== -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top">Stayly<span class="brand-dot">.</span></a>
+      <nav class="nav-links">
+        <a href="#audit">Free Audit</a>
+        <a href="#how">How it works</a>
+        <a href="#why">Why hosts</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="btn btn-primary nav-cta" href="#audit">Run free audit</a>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="top">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <span class="badge">Built for Airbnb &amp; short-term-rental hosts</span>
+        <h1>Find out why your Airbnb <span class="hl">isn't booking</span>.</h1>
+        <p class="lede">
+          90% of travelers only look at the first 20 listings. Stayly scores yours the way
+          Airbnb's algorithm reads it — and tells you exactly which fixes move the needle on occupancy.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-lg" href="#audit">Run a free Listing Audit →</a>
+          <span class="hero-note">No signup required · 30 seconds · 100% free</span>
+        </div>
+        <div class="hero-stats">
+          <div><strong>6</strong><span>factors we score</span></div>
+          <div><strong>0–100</strong><span>readiness score</span></div>
+          <div><strong>48%</strong><span>avg host occupancy — beat it</span></div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="score-card">
+          <div class="score-ring"><span class="score-num" id="heroScore">—</span><span class="score-grad">/100</span></div>
+          <div class="score-meta">
+            <span class="grade" id="heroGrade">Grade</span>
+            <span class="score-sub">Your listing's booking readiness</span>
+          </div>
+          <div class="mini-bars">
+            <div class="mbar"><i style="width:80%"></i><span>Title</span></div>
+            <div class="mbar"><i style="width:60%"></i><span>Description</span></div>
+            <div class="mbar"><i style="width:50%"></i><span>Photos</span></div>
+            <div class="mbar"><i style="width:45%"></i><span>Amenities</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Audit Tool ===== -->
+  <section class="audit" id="audit">
+    <div class="container">
+      <div class="section-head">
+        <h2>Free Airbnb Listing Audit</h2>
+        <p>Fill in your current listing details. We score it against how Airbnb search and guests actually judge a listing — then hand you a prioritized fix list. No account, no credit card.</p>
+      </div>
+
+      <div class="audit-grid">
+        <!-- Input -->
+        <form class="audit-form" id="auditForm" novalidate>
+          <label class="field">
+            <span>Listing title <em id="titleCount">0 / 50</em></span>
+            <input type="text" id="fTitle" maxlength="50" placeholder="e.g. Sunny downtown loft · skyline view · fast WiFi" />
+          </label>
+
+          <label class="field">
+            <span>Description</span>
+            <textarea id="fDesc" rows="4" placeholder="What makes the space special? Layout, light, neighborhood, check-in, house rules..."></textarea>
+          </label>
+
+          <div class="field-row">
+            <label class="field">
+              <span>Photo count</span>
+              <input type="number" id="fPhotos" min="0" max="100" placeholder="20" />
+            </label>
+            <label class="field field-check">
+              <input type="checkbox" id="fInstant" />
+              <span>Instant Book on</span>
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Amenities listed <em>comma separated</em></span>
+            <input type="text" id="fAmenities" placeholder="wifi, kitchen, ac, washer, tv, parking, pool, workspace, heating" />
+          </label>
+
+          <div class="field-row">
+            <label class="field">
+              <span>Your nightly price (USD)</span>
+              <input type="number" id="fPrice" min="0" placeholder="120" />
+            </label>
+            <label class="field">
+              <span>Area average price <em>optional</em></span>
+              <input type="number" id="fAvg" min="0" placeholder="130" />
+            </label>
+          </div>
+
+          <div class="field-row">
+            <label class="field">
+              <span>Number of reviews</span>
+              <input type="number" id="fReviews" min="0" placeholder="42" />
+            </label>
+            <label class="field">
+              <span>Avg rating (0–5)</span>
+              <input type="number" id="fRating" min="0" max="5" step="0.1" placeholder="4.9" />
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Run my free audit →</button>
+          <p class="form-fine">Everything runs in your browser. We never store your listing until you ask us to email it.</p>
+        </form>
+
+        <!-- Result -->
+        <div class="audit-result" id="auditResult" hidden>
+          <div class="result-top">
+            <div class="score-ring lg">
+              <span class="score-num" id="resScore">0</span>
+              <span class="score-grad">/100</span>
+            </div>
+            <div>
+              <span class="grade big" id="resGrade">—</span>
+              <p class="result-sub" id="resSummary">—</p>
+            </div>
+          </div>
+
+          <div class="bars" id="resBars"></div>
+
+          <div class="tips">
+            <h3>What to fix first</h3>
+            <ul id="resTips"></ul>
+          </div>
+
+          <form class="email-capture" id="emailForm" action="https://formspree.io/f/meeyzkdp" method="POST">
+            <label for="fEmail">Get the full rewrite report + weekly hosting tips by email</label>
+            <div class="email-row">
+              <input type="email" id="fEmail" name="email" placeholder="you@email.com" required />
+              <button type="submit" class="btn btn-primary">Email my report</button>
+            </div>
+            <p class="form-fine" id="emailNote">No spam. Unsubscribe anytime.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== How it works ===== -->
+  <section class="how" id="how">
+    <div class="container">
+      <div class="section-head">
+        <h2>How Stayly works</h2>
+        <p>Three steps from a guessing host to a booked-out host.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <span class="step-num">1</span>
+          <h3>Audit</h3>
+          <p>Drop in your title, description, photo count, amenities, price, and reviews. Stayly scores six factors the algorithm weights.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">2</span>
+          <h3>Rewrite</h3>
+          <p>One click rewrites your title to the character limit with the right keywords, and drafts a description guests actually book from.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">3</span>
+          <h3>Book</h3>
+          <p>Publish the optimized listing, watch your first-page impressions and occupancy climb. Re-audit after every tweak.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Why hosts ===== -->
+  <section class="why" id="why">
+    <div class="container">
+      <div class="section-head">
+        <h2>Why hosts need this</h2>
+        <p>Most hosts spend weeks on the property and minutes on the listing text — then wonder why occupancy sits at 48%.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <h3>Search placement is everything</h3>
+          <p>90% of guests never scroll past the first 20 listings. A keyword-dense title and complete listing is what gets you there.</p>
+        </div>
+        <div class="why-card">
+          <h3>Content quality pays</h3>
+          <p>In a 10,000-listing study only 12% met strong content standards — and they outperformed their local market by 35%.</p>
+        </div>
+        <div class="why-card">
+          <h3>Photos decide the click</h3>
+          <p>Guests book with their eyes. Listings with 15+ well-sequenced photos earn dramatically more first-page impressions.</p>
+        </div>
+        <div class="why-card">
+          <h3>Small fixes, real money</h3>
+          <p>A few points of occupancy on a $120/night listing is thousands a year. Optimization pays for itself fast.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-head">
+        <h2>FAQ</h2>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>Is the audit really free?</summary>
+          <p>Yes. The on-page audit runs entirely in your browser and costs nothing. No account needed.</p>
+        </details>
+        <details>
+          <summary>Do I need to give you my Airbnb login?</summary>
+          <p>Never. You fill in your listing details manually. Stayly never touches your Airbnb account.</p>
+        </details>
+        <details>
+          <summary>How is the score calculated?</summary>
+          <p>We weight title keyword density &amp; character limit, description depth, photo count, amenity completeness, pricing vs your area, and trust signals (reviews, rating, Instant Book) — the same factors that drive search placement and conversion.</p>
+        </details>
+        <details>
+          <summary>Will this guarantee I rank #1?</summary>
+          <p>No tool can. But most listings leave easy points on the table, and Stayly shows you exactly where — so you stop guessing.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <a class="brand" href="#top">Stayly<span class="brand-dot">.</span></a>
+        <p class="footer-sub">Airbnb listing audit for hosts who want more bookings. AI-assisted, human-approved.</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;font-size:13px;margin-top:10px;">
+        <span style="color:var(--muted);font-weight:600;">More free audit tools:</span>
+        <a href="https://Viyozc.github.io/listora/" style="color:var(--brand-dk);font-weight:600;">Listora</a><a href="https://Viyozc.github.io/booklisting-ai/" style="color:var(--brand-dk);font-weight:600;">BookListing</a><a href="https://Viyozc.github.io/mockly-ai/" style="color:var(--brand-dk);font-weight:600;">Mockly</a><a href="https://Viyozc.github.io/newsletterly-ai/" style="color:var(--brand-dk);font-weight:600;">Newsletterly</a><a href="https://Viyozc.github.io/launchly-ai/" style="color:var(--brand-dk);font-weight:600;">Launchly</a><a href="https://Viyozc.github.io/profilo-ai/" style="color:var(--brand-dk);font-weight:600;">Profilo</a>
+      </div>
+      <p class="footer-fine">Stayly is an independent tool and is not affiliated with Airbnb, Inc. "Airbnb" is a trademark of Airbnb, Inc.</p>
+    </div>
+  </footer>
+
+  <script src="assets/audit.js"></script>
+</body>
+</html>
